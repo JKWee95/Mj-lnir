@@ -285,6 +285,7 @@ window.onload = function() {
 
 		//play Odin's speech when reach last page
 		if ((scrollY+document.documentElement.clientHeight) === lastSegment_appear_offset){
+			document.getElementById("backgroundMusic").volume=0.6;
 			document.getElementById("speech").volume=0.7;
 			document.getElementById("speech").play();
 			var delayInMilliseconds = 7000; //7 second
