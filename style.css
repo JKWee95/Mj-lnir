@@ -1,0 +1,962 @@
+
+body {
+	margin:0;
+	width: 100%;
+	height: 100%;
+	/*overflow-x: hidden;*/
+	cursor: none;
+	/*background-color: black;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	margin: 0;*/
+	--bigFont: 32px;
+	--bigSpacing: 32px;
+	--line_height: 32px;
+}
+
+@font-face {
+  font-family: 'ancientHellenic_Regular';
+  src: url('DalekPinpointBold.ttf');
+}
+
+@font-face {
+  font-family: 'formal_wording';
+  src: url('International.ttf');
+}
+
+..backgroundMusic,
+.speech,
+.hammerSoundEffect{
+  display: block;
+  z-index: 5;
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: #0087ca;
+}
+
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #D4AF37;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+.main{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle at 50% 100%, rgba(31,31,31,1)30%, rgba(0,0,0,1) 50%);
+}
+
+.circle{
+	position: fixed;
+	z-index: 5;
+	width: 32px;
+	height: 32px;
+	background-color: #ffffff;
+	border-radius: 50%;
+	pointer-events: none;
+	background: radial-gradient(circle at 50% 50%, rgba(31,31,31,0.2) 45%, rgba(256,256,256,0.7));
+}
+
+.threeD{
+	position: fixed;
+	width: 100%;
+	top:0;
+	left: 0;
+	z-index: 0;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;  /*Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  padding-top: 5%; /* Location of the box */
+  padding-bottom: 5%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  --ModalInputHeight: 40%;
+  --MsgBoxInputHeight: 40%;
+  --TextBoxMargin: 2% 0%;
+  color: #ffffff;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #1C252E;
+  margin: auto;
+  padding: 5%;
+  margin-bottom: 20%;
+  border: 1px solid #888;
+  width: 50%;
+  height: 70%; /*to adjust in js*/
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  z-index: 10;
+  cursor: pointer; 
+}
+
+.close:hover{
+  color: #000;
+  text-decoration: none;
+}
+
+.form_title{
+	font-size: 20px;
+	padding-bottom: 20px;
+}
+
+.form1{
+  width: 100%;
+  height: 80%;
+  font-size: 20px;
+}
+
+#fname, #lname, #Cemail, #Cname{
+	width: 100%;
+	height: 5%;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+}
+
+select.countrySel{
+	width: 101%;
+	height: 6%;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+}
+
+#comments{
+	width:100%;
+	height: 10%;
+	border: 1px solid #ccc;
+  	border-radius: 4px;
+}
+
+.must{
+  color: red;
+}
+
+.submit{
+	width: 100%;
+	height: 10%;
+	background-color: #3AAFA9;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.submit:hover {
+  background-color: #2F8F8A;
+  font-family: Arial;
+}
+
+.header{
+	position: fixed;
+	--a:white;
+	--Invert_a: #1C252E;  /*BLACK*/
+	background: transparent;
+	top: 0;
+	display: flex;
+  width: 100%;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3%;
+  font-size: calc(var(--bigFont)*0.6);
+}
+
+.art,
+.about,
+.contact{
+	position: relative;
+	width: 20%;
+	color: white;
+	font-family: ancientHellenic_Regular;
+}
+
+.art_desc,
+.about_desc,
+.contact_desc{
+	position: relative;
+	width: 20%;
+	color: white;
+	transform: scale(1,1);
+	transition: transform 0.25s ease-out;
+}
+
+.art_desc:hover,
+.about_desc:hover,
+.contact_desc:hover{
+	position: relative;
+	width: 20%;
+	color: grey;
+	transform: scale(1.3,1.3);
+	transition: transform 0.25s ease-out;
+}
+
+.selection_circles{
+	position: fixed;
+	z-index: 5;
+	width: 120px;
+	height: 180px;
+}
+
+.selection_circles_one{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 100%;
+	background-color: #ffffff;
+	border-radius: 50%;
+	background: radial-gradient(circle at 50% 50%, rgba(31,31,31,0.2) 45%, rgba(256,256,256,0.7));
+}
+
+.selection_circles_two{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 100px;
+	background-color: #ffffff;
+	border-radius: 50%;
+	background: radial-gradient(circle at 50% 50%, rgba(31,31,31,0.2) 45%, rgba(256,256,256,0.7));
+}
+
+.selection_circles_three{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 150px;
+	background-color: #ffffff;
+	border-radius: 50%;
+	background: radial-gradient(circle at 50% 50%, rgba(31,31,31,0.2) 45%, rgba(256,256,256,0.7));
+}
+
+.firstSegmentDesc{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	color: white;
+	background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
+	padding-bottom: 5%;
+	padding-top: 15%;
+}
+
+.firstSegmentDesc_one{
+	position: relative;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+  	transform: translateX(-50%);
+  	font-size: var(--bigFont);
+  	padding-bottom: calc(var(--bigSpacing)*0.75);
+  	font-family: formal_wording;
+}
+
+.firstSegmentDesc_two{
+	position: relative;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+  	transform: translateX(-50%);
+  	font-size: calc(var(--bigFont)*2.5);
+  	font-family: formal_wording;
+}
+
+.firstSegmentDesc_three{
+	position: relative;
+	width: 60%;
+	padding-left: 20%;
+	padding-top: 3%;
+	color: white;
+	font-size: calc(var(--bigFont)*0.5);
+	line-height: calc(var(--line_height)*1.2);
+	font-family: formal_wording;
+}
+
+.headerWord1{
+	position: absolute;
+	opacity: 1;
+	top: 50%;
+	left:6%;
+	transform: translateY(-50%);
+	border-radius: 10px;
+	color: var(--a);
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;      /*To scale in js to make it respond to resize*/
+	font-weight: bold;
+}
+
+.headerWord2{
+  position: absolute;
+  opacity: 1;
+  top: 50%;
+  right: 6%;
+  transform: translateY(-50%);
+  color: var(--Invert_a);
+  border: none;
+  border-radius: 10px;
+  background: #3AAFA9;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;      /*To scale in js to make it respond to resize*/
+  font-weight: bold;
+}
+
+.headerWord1:hover {
+  color: #C4C4C4 ;
+}
+
+.headerWord2:hover {
+  color: #3B4E61 ;
+}
+
+.firstSegment{
+
+	--firstSegmentOpacity: 100;
+	--fsHeight: 0px;				/*Height is initialise in js to make it match the window height*/
+	position: relative;
+	align-content: center;
+	text-align: center;
+	background-color: transparent;
+	z-index: 1;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.BackgroundText{
+	font-size: 55px;
+	opacity:var(--firstSegmentOpacity);
+}
+
+.Title{
+	padding: 30px;
+	font-size: 30px;
+	opacity:var(--firstSegmentOpacity);
+}
+
+.Services{
+	--height:10px;
+	position: relative;
+	background-color: #D3D3D3;
+	color:black;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: var(--height);
+}
+
+.Service_title{
+	font-weight: bold;
+	padding-top: 30px;
+	font-size: 55px;
+	text-align: center;
+	color: black;
+	position: relative;
+}
+
+.Service_desc{
+	font-size: 30px;
+	padding-top: 50px;
+	padding-bottom: 80px;
+	text-align: center;
+	color: black;
+	position: relative;
+}
+
+.Service_contents{
+	position: relative;
+	width:80%;
+	margin-left:10%;
+	margin-right:10%;
+	padding-bottom: 80px;
+	font-size: 25px;
+	
+}
+
+.Service_content_button{
+	position: relative;
+	border-radius: 6px;
+	cursor: pointer;
+	left: 50%;
+	font-size: 25px;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+	box-shadow: 3px 3px #888888;
+	background-color: #3AAFA9;
+}
+
+.Service_content_button2{
+	position: relative;
+	border-radius: 6px;
+	cursor: pointer;
+	left: 50%;
+	font-size: 25px;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+	box-shadow: 3px 3px #888888;
+	background-color: #3AAFA9;
+}
+
+.Service_content_button3{
+	position: relative;
+	border-radius: 6px;
+	cursor: pointer;
+	left: 50%;
+	font-size: 25px;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+	box-shadow: 3px 3px #888888;
+	background-color: #3AAFA9;
+}
+
+.active, .Service_content_button:hover {
+  background-color: black;
+  color: #3AAFA9;
+}
+.active, .Service_content_button2:hover {
+  background-color: black;
+  color: #3AAFA9;
+}
+.active, .Service_content_button3:hover {
+  background-color: black;
+  color: #3AAFA9;
+}
+
+.Service_content_1{
+	display: inline-block;
+	width:27%;
+	margin-left:3%;
+	margin-right:3%;
+	vertical-align: top;
+}
+
+.first_content{
+	opacity: 50%;
+	background-color: black;
+	color: white;
+	padding: 8px;
+	margin-top: 5px;
+	display: none;
+	position: relative;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	border: 1px solid black;
+}
+
+.Service_content_2{
+	display: inline-block;
+	width:27%;
+	margin-left:3%;
+	margin-right:3%;
+	vertical-align: top;
+}
+
+.second_content{
+	opacity: 50%;
+	background-color: black;
+	color: white;
+	padding: 8px;
+	margin-top: 5px;
+	display: none;
+	position: relative;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	border: 1px solid black;
+}
+
+.Service_content_3{
+	display: inline-block;
+	width:27%;
+	margin-left:3%;
+	margin-right:3%;
+	right:0%;
+	vertical-align: top;
+}
+
+.third_content{
+	opacity: 50%;
+	background-color: black;
+	color: white;
+	padding: 8px;
+	margin-top: 5px;
+	display: none;
+	position: relative;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	border: 1px solid black;
+}
+
+
+.secondSegment{
+	--secondSegmentOpacity: 100%;
+	position: relative;
+	width: 100%;
+	/*background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(46,46,46,1) 30%, rgba(46,46,46,1) 70%, rgba(0,0,0,1) 100%);
+	background-color: #2E2E2E;*/
+	background: rgba(0,0,0,0.7);
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left{
+	position: relative;
+	width: 30%;
+	color: white;
+	background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 70%, rgba(46,46,46,1) 100% );
+}
+
+.threeD_small{
+	position: relative;
+	width: 100%;
+	top:0;
+	left: 0;
+	z-index: 0;
+}
+
+.right{
+	position: relative;
+	width: 70%;
+	color: white;
+}
+
+.names{
+	position: absolute;
+	background: transparent;
+	top: 0;
+	display: flex;
+  z-index: 2;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--bigFont)*1.2);
+  font-family: ancientHellenic_Regular;
+  color: white;
+}
+
+.Aglaia,
+.Thalia,
+.Euphrosyne{
+	opacity: 0;
+	position: absolute;
+	color: white;
+}
+
+.lastSegment{
+	position: relative;
+	width: 100%;
+	align-items: center;
+	text-align: center;
+}
+
+.lastSegmentDesc{
+	position: relative;
+	width: 60%;
+	padding-left: 20%;
+	top: 50%;
+	transform: translateY(-50%);
+	color: white;
+	font-size: calc(var(--bigFont)*0.7);
+	line-height: calc(var(--line_height)*4);
+	letter-spacing: 6px;
+	font-family: formal_wording;
+}
+
+.thirdSegmentTitle{
+	position: absolute;
+	left: 10%;
+}
+
+.thirdSegmentButtonsAndDesc{
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	padding-left: 10%;
+	top: 40%;
+	--buttonFontSize: 30px;
+}
+
+.button1AndDesc1{
+	position: absolute;
+	width: 100%;
+}
+
+.button2AndDesc2{
+	position: absolute;
+	top: 40%;
+	width: 100%;
+}
+.button3AndDesc3{
+	position: absolute;
+	top: 80%;
+	width: 100%;
+}
+
+.button1{
+	position: absolute;
+	text-align: left;
+	background-color: transparent;
+	color: #3AAFA9;
+	border: none;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: var(--buttonFontSize);      /*To scale in js to make it respond to resize*/
+	font-weight: bold;
+}
+
+.button2{
+	position: absolute;
+	text-align: left;
+	background-color: transparent;
+	color: #3AAFA9;
+	border: none;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: var(--buttonFontSize);      /*To scale in js to make it respond to resize*/
+	font-weight: bold;
+}
+
+.button3{
+	position: absolute;
+	text-align: left;
+	background-color: transparent;
+	color: #3AAFA9;
+	border: none;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: var(--buttonFontSize);      /*To scale in js to make it respond to resize*/
+	font-weight: bold;
+}
+
+.button1 span , .button2 span, .button3 span{
+  transition: all 0.3s;
+}
+.button1::before, .button2::before, .button3::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: rgba(255,255,255,0.5);
+  border-bottom-color: rgba(255,255,255,0.5);
+  transform: scale(0.1, 2);
+}
+.button1:hover::before, .button2:hover::before, .button3:hover::before {
+  opacity: 1; 
+  transform: scale(1, 1); 
+}
+
+@keyframes pop-out-desc {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.desc1{
+	position: absolute;
+	font-size: var(--buttonFontSize);
+	left: 45%;
+	display: none;
+	padding:10px;
+	background-color: rgba(1,1,1,0.7);
+	border-radius: 15px;
+	animation: fade-in-desc 1s forwards;
+}
+
+.desc2{
+	position: absolute;
+	font-size: var(--buttonFontSize);
+	left: 45%;
+	display: none;
+	padding:10px;
+	background-color: rgba(1,1,1,0.7);
+	border-radius: 15px;
+	animation: fade-in-desc 1s forwards;
+}
+
+.desc3{
+	position: absolute;
+	font-size: var(--buttonFontSize);
+	left: 45%;
+	display: none;
+	padding:10px;
+	background-color: rgba(1,1,1,0.7);
+	border-radius: 15px;
+	animation: fade-in-desc 1s forwards;
+}
+
+@keyframes fade-in-desc {
+  0% {
+  	opacity: 1;
+  	display: block;
+    transform: scale(1);
+  }
+  100% {
+  	opacity: 0;
+    transform: scale(0);
+   	display: none;
+  }
+}
+
+.fourthSegment{
+	background-color: black;
+	position: relative;
+	width: 100%;
+	color: white;
+	align-content: center;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 150px;
+	/*background:	linear-gradient(#1C252E, #000000 50%, #1C252E);
+	opacity: 0.7;*/
+}
+
+.fourthSegmentTitle{
+	position: relative;
+	font-size: 55px;
+}
+
+.fourthSegmentSubTitle{
+	position: relative;
+	font-size: 40px;
+}
+
+.fourthSegmentDesc{
+	position: relative;
+	font-size: 30px;
+}
+
+.shapesAndDesc{
+	position: relative;
+	text-align: center;
+	left:13%;
+	margin-top:50px;
+	margin-bottom: 50px;
+	font-size: 20px;
+}
+
+.Line{
+	position: absolute;
+	width: 65%;
+	height:5px;
+	background-color: #3AAFA9;
+	opacity: 1;
+	left:5%;
+	top:50%;
+	transform: translateY(-50%);
+	animation: Line-extend 4s steps(1000, end);
+}
+
+@keyframes Line-extend {
+  0% {
+    width:0%;
+  }
+  100% {
+    width:65%;
+  }
+}
+
+.circleOne{
+	position: absolute;
+	top:0;
+	height: 100%;
+	width: 10%;
+	border-radius: 50%;
+	background-color: #3AAFA9;
+	opacity: 1;
+	animation: Circle-animation 0.75s forwards;
+}
+
+@keyframes Circle-animation {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.circleOneDesc{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: black;
+	font-weight: bold;
+}
+
+.circleTwo{
+	position: absolute;
+	top:0;
+	left: 33%;
+	height: 100%;
+	width: 10%;
+	border-radius: 50%;
+	background-color: #3AAFA9;
+	opacity: 1;	
+	animation: CircleTwo-animation 2.75s forwards;
+}
+
+@keyframes CircleTwo-animation {
+  0% {
+    transform: scale(0);
+  }
+  73% {
+    transform: scale(0);
+  }
+  95% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.circleTwoDesc{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: black;
+	font-weight: bold;
+}
+
+.circleThree{
+	position: absolute;
+	top:0;
+	left: 66%;
+	height: 100%;
+	width: 10%;
+	border-radius: 50%;
+	background-color: #3AAFA9;
+	opacity: 1;
+	animation: CircleThree-animation 4.75s forwards;
+}
+
+@keyframes CircleThree-animation {
+  0% {
+    transform: scale(0);
+  }
+  84% {
+    transform: scale(0);
+  }
+  97% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.circleThreeDesc{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: black;
+	font-weight: bold;
+}
+
+.fifthSegment{
+	position: relative;
+	width: 100%;
+	color: white;
+	z-index: 1;
+	background: linear-gradient(#1C252E,#000000);
+}
+
+.address{
+	position: relative;
+	top: 3%;
+	left: 6%;
+	font-size: 20px;
+}
+
+.email{
+	position: relative;
+	top: 3%;
+	left: 6%;
+	font-size: 20px;
+}
+
+.fifthSegmentLine{
+	position: relative;
+	left:6%;
+	width: 88%;
+	height: 1px;
+	background-color: white;
+}
+
+.fifthSegmentCompanyName{
+	position: relative;
+	text-align: right;
+	right: 6%;
+	font-size: 15px;
+}
+
+.fifthSegmentButton{
+	position: absolute;
+	top: 30%;
+	text-align: right;
+	right: 10%;
+	padding: 20px;
+	color: black;
+	border: none;
+	border-radius: 5px;
+	background: #3AAFA9;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 25px;      /*To scale in js to make it respond to resize*/
+	font-weight: bold;
+}
